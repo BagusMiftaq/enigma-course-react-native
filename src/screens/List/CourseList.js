@@ -1,15 +1,7 @@
 import {FlatList, Text, View, StyleSheet, Button, TouchableOpacity, Image} from "react-native";
 import datapack from "../../fixture/dummyUser.json";
 import {useState} from "react";
-
-function getRandomColor() {
-    let maxVal = 0xFFFFFF;
-    let randomNumber = Math.random() * maxVal;
-    randomNumber = Math.floor(randomNumber);
-    randomNumber = randomNumber.toString(16);
-    let randColor = randomNumber.padStart(6, 0);
-    return `#${randColor.toUpperCase()}`
-}
+import getRandomColor from "../../utils/color";
 const renderprofile = (data) => {
     return (
         <View style={styles.phonebook}>
@@ -30,7 +22,6 @@ const renderprofile = (data) => {
         </View>
     )
 }
-
 
 const CourseList = () => {
     const [sorter, setSort] = useState(true);
