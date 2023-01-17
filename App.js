@@ -1,12 +1,14 @@
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {Registration} from "./src/screens/Registration";
 import {CourseList} from "./src/screens/List";
+import ContactList from "./src/screens/List/ContactList";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar/>
-        <CourseList/>
+        <ContactList/>
+      {/*<CourseList/>*/}
     </View>
   );
 }
