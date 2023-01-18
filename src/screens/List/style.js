@@ -25,12 +25,13 @@ const styles = StyleSheet.create({
         margin: 10,
 
     },
-    picture: {
+    picture: (bgColor)=>({
         height: 60,
         width: 60,
         marginRight: 10,
         borderRadius: 50,
-    },
+        backgroundColor: bgColor,
+    }),
     name: {
         fontSize: 18,
         fontWeight: "bold",

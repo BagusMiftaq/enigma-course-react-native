@@ -4,28 +4,35 @@ import getRandomColor from "../../utils/color";
 import {groupingAlphabet} from "../../utils/collection";
 import React, {useState} from "react";
 import styles from "./style";
+import {useNavigation} from "@react-navigation/native";
 
 const contact = [...datapack];
 
 const RenderImage = React.memo((props) => (
     <View>
         <Image
-            style={{...styles.picture, backgroundColor: `${getRandomColor()}`,}
-            }
+            style={styles.picture(getRandomColor())}
             source={{uri: props.image}}/>
     </View>
 ))
 
 const renderprofile = (data) => {
     const [pressing, setPress] = useState(false);
+    const navigation = useNavigation();
 
     const presInfo = () => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
         setPress(!pressing);
     }
 
+    const onNavigate=()=>{
+        navigation.navigate("Detail",{
+            contact : data
+        })
+    }
+
     return (
-        <TouchableOpacity onPress={presInfo}>
+        <TouchableOpacity onPress={onNavigate} onLongPress={presInfo} activeOpacity={1} style={{overflow:"hidden"}}>
             <View style={styles.phonebook}>
                     <RenderImage image={data.image}/>
                 <View>
@@ -34,7 +41,7 @@ const renderprofile = (data) => {
                 </View>
             </View>
             {pressing === true && (
-                <View style={{marginLeft:90, marginBottom:10}}>
+                <View style={{paddingLeft:90, paddingBottom:20, backgroundColor:"white"}}>
                     <Text style={{...styles.number, fontWeight:"bold", color:"black"}}>Email</Text>
                     <Text style={styles.number}>{data.email}</Text>
                     <Text style={{...styles.number, fontWeight:"bold", color:"black"}}>Address</Text>
@@ -53,11 +60,9 @@ const renderHeader = (item) => (
 )
 
 const ContactList = () => {
+
     return (
         <>
-            <View style={styles.appbar}>
-                <Text style={styles.apptitle}>Contact</Text>
-            </View>
             <SectionList
                 initialNumToRender={5}
                 sections={groupingAlphabet(contact, "firstName")}

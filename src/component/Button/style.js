@@ -6,7 +6,7 @@ const styles= StyleSheet.create({
         padding:10,
     },
     button:{
-        backgroundColor:'#2ecc71',
+        backgroundColor:'#CB37D1',
         margin:5,
         padding:15,
     },
