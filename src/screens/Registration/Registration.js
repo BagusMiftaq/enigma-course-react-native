@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     formContainer:{
       paddingHorizontal:20,
-      paddingTop:20,
+      paddingTop:10,
     },
     title:{
       fontSize: 24,
