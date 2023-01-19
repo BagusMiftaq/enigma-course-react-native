@@ -2,7 +2,7 @@ import {Text, TouchableOpacity, View} from "react-native";
 import styles from "./style";
 
 
-const Button =(props)=>{
+const ButtonCancel =(props)=>{
  return(
      <View style={styles.container}>
          <TouchableOpacity style={styles.button} onPress={props.onPress} disabled={props.disable}>
@@ -14,4 +14,4 @@ const Button =(props)=>{
  )
 }
 
-export default Button;
+export default ButtonCancel;

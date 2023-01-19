@@ -13,7 +13,7 @@ const FormInput=(props)=>{
                 style={styles.textInput}
                 placeholder={props.placeholder}
                 value={props.value}
-                onChange={props.onChange}
+                onChangeText={props.onChange}
                 keyboardType={props.type}
                 secureTextEntry={props.isPassword}
             />

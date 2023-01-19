@@ -7,7 +7,7 @@ const styles= StyleSheet.create({
     },
     button:{
         borderRadius:10,
-        backgroundColor:'#CB37D1',
+        backgroundColor:'#888888',
         margin:5,
         padding:15,
     },
