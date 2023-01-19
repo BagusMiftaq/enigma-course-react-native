@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
 
     },
     textInput:{
+        backgroundColor:"white",
         height:50,
         marginTop:5,
         fontSize:25,

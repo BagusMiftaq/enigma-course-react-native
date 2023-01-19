@@ -4,6 +4,7 @@ import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
 
 import Home from "../screens/Home/Home";
 import Detail from "../screens/Detail/Detail";
+import ContactList from "../screens/List/ContactList";
 
 // const Stack= createNativeStackNavigator();
 
@@ -13,8 +14,8 @@ const HomeStack=()=>{
     return(
         <Stack.Navigator screenOptions={{...TransitionPresets.SlideFromRightIOS}}>
             <Stack.Screen
-                name={"Home"}
-                component={Home}/>
+                name={"Contact"}
+                component={ContactList}/>
             <Stack.Screen
                 name={"Detail"}
                 component={Detail}
