@@ -4,29 +4,51 @@ import styles from "./styles";
 import Button from "../../component/Button/Button";
 import ButtonCancel from "../../component/ButtonCancel/ButtonCancel";
 import FormInput from "../../component/FormInput/FormInput";
-import {useNavigation} from "@react-navigation/native";
 import ImagePicker from "../../component/ImagePicker/ImagePicker";
+import useFetchMutation from "../../hooks/useFetchMutation";
+import {addCourse} from "../../service/courseApi";
+import {isIos} from "../../utils/isIos";
+import useFetchQuery from "../../hooks/useFetchQuery";
+import {getCourseType} from "../../service/courseTypeApi";
 
 const FORM_LIST = [
     {id: "title", label: "Title", type: "default", placeholder: "Enter course title"},
     {id: "description", label: "Description", type: "default", placeholder: "Enter course description"},
-    {id: "courseType", label: "Course Type", type: "default", placeholder: "Choose course material"},
+    {id: "courseTypeId", label: "Course Type", type: "default", placeholder: "Choose course type"},
     {id: "duration", label: "Duration", type: "default", placeholder: "Enter course duration"},
     {id: "level", label: "Level", type: "default", placeholder: "Enter course level"},
 ]
 
-const AddCourse = ({navigation}) => {
+const AddCourse = (props) => {
     const {getter, setter} = useAddCourse();
+    const {data: courseTypeData} = useFetchQuery(getCourseType);
+    const {fetchMutation, loading} = useFetchMutation(addCourse, ()=> props.navigation.navigate("Course List"));
 
-    const onPress = () =>{
-        Alert.alert("Course has been added")
-        navigation.navigate("Course List")
+    console.log("prips", props)
 
+    const submitHandler = () =>{
+        const courseFilePathArr = getter.courseFile?.split("/");
+        const courseFileName = courseFilePathArr[courseFilePathArr.length-1];
+        const payload = new FormData();
+
+        payload.append("title", getter.title);
+        payload.append("description", getter.description);
+        payload.append("file", {
+            uri: getter.courseFile,
+            type: "image/jpeg",
+            name: courseFileName,
+        })
+        payload.append("courseTypeId", getter.courseTypeId);
+        payload.append("duration", getter.duration);
+        payload.append("level", getter.level);
+
+        console.log("payload", payload)
+
+        fetchMutation(payload);
     }
 
-
     const onCancel=()=>{
-        navigation.navigate("Course List");
+        props.navigation.navigate("Course List");
     }
 
     return (
@@ -54,7 +76,7 @@ const AddCourse = ({navigation}) => {
                 />
             </ScrollView>
             <View style={styles.buttonWrapper}>
-                <Button text={"Submit"} onPress={onPress} disable={false}/>
+                <Button text={"Submit"} onPress={submitHandler} disable={false}/>
                 <ButtonCancel text={"Cancel"} onPress={onCancel}/>
             </View>
         </KeyboardAvoidingView>

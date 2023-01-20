@@ -6,6 +6,7 @@ import styles from "./styles";
 import {validateEmail} from "../../utils/validate";
 import useFetchMutation from "../../hooks/useFetchMutation";
 import {login} from "../../service/authApi";
+import {saveToken} from "../../utils/token";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ const Login = (props) => {
 
     const onSuccess = (token) => {
         if (token) {
+            saveToken(token);
             props.navigation.navigate("Main");
         } else {
             alert("Login failed, try again")
