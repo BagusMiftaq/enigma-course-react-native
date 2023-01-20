@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
-import {Text, View} from "react-native";
+import {Image, Text, View} from "react-native";
 import styles from "./styles";
+import splash from "../../../assets/splash_welcom.svg"
+import {getToken} from "../../utils/token";
 
 const Splash=(props)=>{
-    const [isLoggedIn, setLoggedIn] = useState(false);
-
-    const onNavigate=()=>{
-        if (isLoggedIn){
+    const onNavigate= async ()=>{
+        const token = await getToken();
+        if (token){
             props.navigation.navigate("Main")
         } else {
             props.navigation.navigate("Auth")
@@ -16,12 +17,12 @@ const Splash=(props)=>{
     useEffect(()=>{
         setTimeout(()=>{
             onNavigate();
-        }, 100)
+        }, 3000)
     }, [])
 
     return(
         <View style={styles.container}>
-            <Text>SPLASH</Text>
+            <Image source={require('../../../assets/splash.png')} style={{height:200, width:200}}/>
         </View>
     )
 }

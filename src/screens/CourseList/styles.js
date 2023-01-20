@@ -4,7 +4,7 @@ export default StyleSheet.create({
     container: {
         marginHorizontal:10,
         marginVertical:10,
-        padding: 20,
+        padding: 40,
         backgroundColor: "white",
         borderRadius: 10,
         shadowColor: '#000',

@@ -11,6 +11,7 @@ const useFetchMutation = (mutation, onSuccess) => {
             onSuccess?.(result);
         } catch (e){
             setError(true);
+            console.log("ERROR", e);
         }finally {
             setLoading(false);
         }

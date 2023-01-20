@@ -35,7 +35,15 @@ const MainTab = () => {
                 component={AddCourse}
                 options={{
                     tabBarLabel:()=>null,
-                    tabBarIcon: ({focused})=><Icon name="hammer" focused={focused}></Icon>,
+                    tabBarIcon: ({focused})=><Icon name="add-circle" focused={focused}></Icon>,
+                    headerShown: false
+                }}/>
+            <Tabs.Screen
+                name={"Settings"}
+                component={Settings}
+                options={{
+                    tabBarLabel:()=>null,
+                    tabBarIcon: ({focused})=><Icon name="settings" focused={focused}></Icon>,
                     headerShown: false
                 }}/>
         </Tabs.Navigator>
